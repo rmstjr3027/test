@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
+	"os"
+	"strconv"
 	"strings"
 )
 
@@ -28,50 +31,42 @@ func stackSequence(nums []int, n int) string {
 	}
 	return strings.Join(result, "\n")
 }
+
+var (
+	s = bufio.NewScanner(os.Stdin)
+	w = bufio.NewWriter(os.Stdout)
+)
+
 func main() {
+	defer w.Flush()
+	s.Split(bufio.ScanWords)
+
 	var n, num int
 	count := 1
 	stackTop := 0
 	var result bytes.Buffer
-	fmt.Scan(&n)
+	s.Scan()
+	n, _ = strconv.Atoi(s.Text())
 
 	var stack = make([]int, n)
 
 	for i := 0; i < n; i++ {
-		fmt.Scan(&num)
+		s.Scan()
+		num, _ = strconv.Atoi(s.Text())
 		for count <= num {
 			stack[stackTop] = count
 			result.WriteString("+\n")
-			//result = append(result, "+")
 			count++
 			stackTop++
 		}
 		if stack[stackTop-1] == num {
 			stack[stackTop-1] = 0
 			result.WriteString("-\n")
-			//result = append(result, "-")
 			stackTop--
 		} else {
 			fmt.Print("NO")
 			return
 		}
 	}
-	//result.
 	fmt.Print(result.String())
 }
-
-//var sc *bufio.Scanner = bufio.NewScanner(os.Stdin)
-//
-//func nextInt() (r int) {
-//	sc.Scan()
-//	r = 0
-//	for _, c := range sc.Bytes() {
-//		r *= 10
-//		r += int(c - '0')
-//	}
-//	return
-//}
-//func main() {
-//	sc.Split(bufio.ScanWords)
-//	wt := bufio.NewWriter(os.Stdout)
-//	defer wt.Flush()
