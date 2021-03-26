@@ -29,7 +29,7 @@ func union(x, y int) int {
 	left := find(x)
 	right := find(y)
 	if left != right {
-		if left < right {
+		if set[left] < set[right] {
 			left, right = right, left
 		}
 		parent[right] = left
