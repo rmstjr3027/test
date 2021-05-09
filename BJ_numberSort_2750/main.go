@@ -12,6 +12,23 @@ var (
 	w = bufio.NewWriter(os.Stdout)
 )
 
+//func merge(lists []int, left, mid, right int) {
+//	i := left
+//	j := mid
+//	k := right
+//
+//}
+//
+//func mergeSort(lists []int, left, right int) {
+//	var mid int
+//	if left < right {
+//		mid = (left + right) / 2
+//		mergeSort(lists, left, mid)
+//		mergeSort(lists, mid+1, right)
+//		merge(lists, left, mid, right)
+//	}
+//}
+
 func main() {
 	defer w.Flush()
 	var testCase int
